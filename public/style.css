@@ -231,7 +231,7 @@ a {
     align-items: center;
 }
 
-@media (max-width: 700px){
+@media (max-width: 800px){
     .about {
         flex-direction: column;
     }
