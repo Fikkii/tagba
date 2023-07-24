@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="header">
+        <b><em>Welcome to the Dashboard</em></b>
+    </div>
+    <div class="main">
+        <h2>Add Posts...</h2>
+        <form id="myForm" method="POST" action="/dashboard/post">
+            <input name="title" placeholder="Enter title" required type="text">
+            <input name="excerpt" placeholder="Enter excerpt" required type="text">
+            <div class="textarea-cont">
+                <textarea rows="10px" id="editor" class="image-container" name="content" ></textarea>
+            </div>
+            <button type="submit" class="btn">Submit</button>
+        </form>
+        <div class="div">
+            <% if (typeof posts === 'undefined'){ %>
+                <div></div>
+            <%} else { %>
+                <ul style="display: grid;grid-template-columns: 1fr 1fr 1fr 1fr;gap: 10px;" class="events">
+                    <%posts.forEach(post => { %>
+                        <li style="display: flex; align-items: center;">
+                            <a href="/encounters/<%= post.title %>"><i class="ri-calendar-2-line"></i><%= post.title %></a>
+                            <a class="btn" href="/dashboard/encounters/delete/<%= post.title %>">Delete</a>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } %>
+        </div>
+        <h2>Live Source</h2>
+        <form method="POST" action="/dashboard/live">
+            <input name="src" placeholder="Enter Video-Id here" required type="text">
+            <input name="title" placeholder="Enter Video title here" required type="text">
+            <input name="content" placeholder="Enter Video description here"  type="text">
+            <input name="date" placeholder="Enter Video date here"  type="date">
+            <button type="submit" class="btn">Submit</button>
+        </form>
+        <div class="div">
+            <% if (typeof lives === 'undefined'){ %>
+                <div></div>
+            <%} else { %>
+                <ul style="display: grid;grid-template-columns: 1fr 1fr 1fr 1fr;gap: 10px;" class="events">
+                    <%lives.forEach(live => { %>
+                        <li style="display: flex; align-items: center;">
+                            <a href="/dashboard/live/<%= live.src %>" ><i class="ri-vidicon-2-fill"></i><%= live.title %></a>
+                            <a class="btn" href="/dashboard/live/delete/<%= live.src %>" ><i class="ri-delete-bin-7-line ri-xl"></i></a>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } %>
+        </div>
+    <br>
+    <br>
+    <h2>Upcoming Events</h2>
+    <form method="POST" action="/dashboard/event">
+        <input name="event" placeholder="Enter Your Event here" required type="text">
+        <input name="date" placeholder="Enter Your Event Date here" required type="date">
+        <button type="submit" class="btn">Submit</button>
+    </form>
+    <div class="div">
+        <% if (typeof events === 'undefined'){ %>
+            <div></div>
+        <%} else { %>
+            <ul style="display: grid;grid-template-columns: 1fr 1fr 1fr 1fr;gap: 10px;" class="events">
+                <%events.forEach(event => { %>
+                    <li style="display: flex; align-items: center;"><a href="/dashboard/event/<%= event.src %>" ><i class="ri-calendar-2-line"></i><%= event.title %></a>  
+                        <a style="position: relative;top: 0; right: 0;" class="btn" href="/dashboard/event/delete/<%= event.title %>"><i class="ri-delete-bin-5-line"></i></a>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } %>
+        </div>
+        <div class="control-panel">
+            <table>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Surname</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                </tr>
+                <% users.forEach(user => { %>
+                    <tr>
+                        <td><%= user.firstname %></td>
+                        <td><%= user.surname %></td>
+                        <td><%= user.phone %></td>
+                        <td><%= user.email %></td>
+                        <td><%= user.username %></td>
+                        <td><%= user.password %></td>
+                        <% if (authUser === 'fikkyart') { %>
+                            <td><a class="btn" href="/dashboard/delete-user/<%= user.username %>" style="background-color: red;"><i class="ri-delete-bin-5-line"></i></a></td>
+                        <% } %>
+                    </tr>
+                    <% }) %>
+                </table>
+            <a class="btn" href="/dashboard/change-password">Change Password</a>
+            <a class="btn" href="/dashboard/signup">Add New Admin</a>
+            <a class="btn" style="background-color: red;" href="/dashboard/clear">Factory Reset</a>           
+        </div>
+    </div>
+</body>
+</html>

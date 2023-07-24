@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Encounters Page</title>
+</head>
+<body>
+    <header>
+        <div class="brand"><img src="https://tncbcagege.org/wp-content/uploads/2022/10/cropped-logo-1.png" onclick="window.location.href= '/'" height="150" width="150" alt="church-logo"><h2><b><em><i style="cursor: pointer;" onclick="window.location.href= '/'">THE NEW CONVENANT BAPTIST CHURCH, AGEGE</i></em></b></h2></div>                
+        <nav>
+            <ul>
+                <li ><i class="ri-home-line"></i><a href="/">Home</a></li>
+                <li class="active"><i class="ri-star-smile-line"></i></i><a href="/encounters">Encounters</a></li>
+                <li><i class="ri-vip-diamond-line"></i></i><a href="/live">Live</a></li>
+            </ul>
+        </nav>
+    </header>
+    <strong style="color: gray;padding: 10px;"><em>Home / Encounters</em></strong>
+    <div class="grid-encounter">
+        <section>
+            <h2 style="color: rgba(0, 0, 0, 0.803);text-align: center;">Our Daily Encounters</h3>
+            <% posts.forEach(post => { %>
+                <div class="card-list image-container">
+                    <a href="/encounters/<%= post.title %>">
+                    <img src="https://tncbcagege.org/wp-content/uploads/2022/10/ph1-480x300.png" alt="">
+                    <div class="card-info">
+                        <strong><%= post.title %></strong>
+                        <p><%= post.excerpt %></p>
+                    </a>
+                    </div>
+                </div>
+            <% }) %>
+            <%= pageNum %>
+            <div class="pagination">
+                <% for (let i = 1; i <= totalPages; i++) { %>
+                  <a href="/encounters?page=<%= i %>" class="<%= pageNum == i ? 'active' : '' %>"><%= i %></a>
+                <% } %>
+            </div>
+        </section>
+    </div>
+    <div class="board">
+        <h3><em>STAY CONNECTED WITH US...</em></h3>
+        <div class="social-group">
+            <div class="social-icons"><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.JLXFMx03N6tpstTmMbNVlgHaHa%26pid%3DApi&f=1&ipt=37b5a34b90b70e8df27f751cd47133ab331a95aabedbb9d94061ca342be4e4be&ipo=images" alt=""></div>
+            <div class="social-icons"><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.explicit.bing.net%2Fth%3Fid%3DOIP.Ua5AXhtGRgPuisZVmetclQHaFL%26pid%3DApi&f=1&ipt=b4126f74f8191b95847d7ecc62f994e02ac42a673e574eafb1688362970f0989&ipo=images" alt=""></div>
+            <div class="social-icons"><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.zjMhUcihfwmLxS5W3NBpMgHaHa%26pid%3DApi&f=1&ipt=3f81316a764ff6190615447c34c1433265bcb7097d8ca2db2f0745875e311d3b&ipo=images" alt=""></div>
+            <div class="social-icons"><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.wGOOyZdzF8Ia6mt79UWixAHaHa%26pid%3DApi&f=1&ipt=2eabfc9c090f09cdb6f0b787748a832d69e3a375d157f9041d43946cf578cf68&ipo=images" alt=""></div>
+        </div>
+    </div>
+    <footer>
+        <h3><em><b><i>All rights reserved...</i></b></em></h3>
+    </footer>
+</body>
+</html>
