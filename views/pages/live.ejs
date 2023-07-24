@@ -22,7 +22,7 @@
     <% if (typeof lives === "undefined"){ %>
         <div></div>
     <%} else { %>
-        <ul style="display: grid;grid-template-columns: 1fr;gap: 10px;" class="events">
+        
             <%lives.forEach(live => { %>
                 <div class="youtube">
                     <iframe class="image-container" width="330" height="200" src="https://www.youtube.com/embed/<%= live.src %>" title="Youtube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -32,7 +32,7 @@
                     </div>
                 </div>
             <% }) %>
-        </ul>
+     
     <% } %>
     <div class="pagination">
         <% for (let i = 1; i <= totalPages; i++) { %>
