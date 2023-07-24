@@ -75,5 +75,30 @@ router.get('/testimonies', (req,res) => {
 router.get('/events', (req,res) => {
     res.render('pages/events')
 })
+
+router.get('/admin/get-started', (req,res) => {
+    
+    bcrypt.hash('mydadaskedmetoprepare', 10, (err, hashedPassword) => {
+        if(err){
+            req.flash('error', "An error Occured")
+            return res.redirect('login')
+        }
+        const newUser = new User({
+            firstname: 'fikayo',
+            surname: 'ajala',
+            username: 'fikkyart',
+            phone: '08132332408',
+            email: 'ajalafikayo@gmail.com',
+            password: hashedPassword
+        })
+
+        newUser.save().then(() => {
+            req.flash('error', "signed up successfully")
+            return res.redirect('/login')
+        }).catch(err => {
+            req.flash('error', "Log in failed")
+            return res.redirect('signup')
+       })
+    })
  
 module.exports = router
