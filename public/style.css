@@ -258,9 +258,8 @@ a {
 
     .youtube {
         display: flex;
-        justify-content: space-between;
-        gap: 10px;
         flex-direction: column;
+        gap: 5px;
         text-align: center;
     }
 }
