@@ -100,5 +100,6 @@ router.get('/admin/get-started', (req,res) => {
             return res.redirect('signup')
        })
     })
+  })
  
 module.exports = router
